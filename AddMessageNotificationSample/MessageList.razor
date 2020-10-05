@@ -1,0 +1,32 @@
+@inject AppState AppState
+
+<Frame CornerRadius="10" BackgroundColor="Color.LightBlue">
+
+    <StackLayout Orientation="StackOrientation.Vertical" HorizontalOptions="LayoutOptions.Center">
+
+        <Label FontSize="20" Text="Message List" />
+
+        @for (int i = 0; i < AppState.Messages.Count; i++)
+        {
+            var num = i + 1;
+            var msg = AppState.Messages[i];
+            <Label>
+                <Span FontAttributes="FontAttributes.Bold" TextColor="Color.DarkGray">#@num:</Span>
+                <Span>@msg</Span>
+            </Label>
+        }
+
+    </StackLayout>
+
+</Frame>
+
+@code
+{ 
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        // Refresh UI when message list changes
+        AppState.OnChange += StateHasChanged;
+    }
+}

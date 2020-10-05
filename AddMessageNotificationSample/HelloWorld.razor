@@ -1,10 +1,23 @@
+@inject AppState AppState
+ 
 <ContentView>
     <StackLayout Margin="new Thickness(20)">
 
         <Label Text="Hello, World!"
                FontSize="40" />
 
-        <Counter />
+        <Button OnClick="SendFakeMessage">Send fake message</Button>
+
+        <MessageList />
 
     </StackLayout>
 </ContentView>
+
+
+@code
+{
+    void SendFakeMessage()
+    {
+        AppState.AddMessage("This message is from " + DateTimeOffset.Now.ToString("hh:mm:ss"));
+    }
+}
